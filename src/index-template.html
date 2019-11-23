@@ -1,0 +1,9 @@
+<section>
+  <h2><a href='@|uri-path|'>@|title|</a></h2>
+  <div class="metas">
+    <span class="meta date">@|date|</span> :: <span class="tag">@|tags|</span>
+  </div>
+  @|content-only|
+  @(when more?
+     @list{<div class="read-mode"><a href="@|uri-path|">Read more &rarr;</a></div>})
+</section>
