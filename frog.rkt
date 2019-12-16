@@ -4,7 +4,7 @@
 ;; in frog/params.
 (define/contract (init)
   (-> any)
-  ;(current-scheme/host "https://yfzhe.github.io")
+  (current-scheme/host "https://yfzhe.github.io")
   (current-title "看看就好的博客")
   (current-author "yfzhe")
   (current-permalink "/posts/{year}/{month}/{filename}.html")
@@ -33,4 +33,3 @@
 (define/contract (clean)
   (-> any)
   (void))
-
