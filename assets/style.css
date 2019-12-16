@@ -12,13 +12,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  --main-width: 50%;
+  --main-width: 58%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-body > header {
+header {
   width: var(--main-width);
   margin: 3em auto 1em;
   padding-bottom: 1.5em;
@@ -28,7 +28,7 @@ body > header {
   justify-content: space-between;
 }
 
-body > header div.site-title {
+header div.site-title {
   display: flex;
   align-items: center;
   font-size: 1.8em;
@@ -43,21 +43,21 @@ body > header div.site-title {
   letter-spacing: 0.08em;
 }
 
-body > header nav, body > header nav ul {
+header nav, header nav ul {
   margin: 0;
   padding: 0;
 }
-body > header nav ul {
+header nav ul {
   display: flex;
   justify-content: space-around;
 }
-body > header nav li {
+header nav li {
   display: inline;
   margin: 0;
   margin-left: 24px;
 }
 
-body > header a {
+header a {
   font-size: 1em;
   text-decoration: none;
   color: black;
@@ -149,39 +149,36 @@ footer p {
   margin: 0.72em 0;
 }
 
-@media (max-width: 1050px) {
-  body { --main-width: 78%; }
+@media (max-width: 1080px) {
+  body { --main-width: 72%; }
 }
 
-@media (max-width: 840px) {
-  body { --main-width: 86%; }
+@media (max-width: 960px) {
+  body { --main-width: 80%; }
 }
 
-@media (max-width: 730px) {
-  body { --main-width: 90% }
-}
-
-@media (max-width: 660px) {
-  body {
-    --main-width: 92%;
-  }
+@media (max-width: 800px) {
   header {
     flex-direction: column;
     align-items: center;
-    margin-top: 2em;
+    margin-top: 1.5em;
     padding-bottom: 0.5em;
   }
   header nav {
-    position: relative;
     right: 0;
-    margin: 1.5em 0 0.82em;
+    margin: 0.75em 0 0.75em;
     padding: 0;
   }
   header nav li {
-	margin-left: 1em;
-	margin-right: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
+
+@media (max-width: 660px) {
+  body { --main-width: 88%; }
+}
+
 
 /* site logo */
 .logo {
@@ -326,7 +323,6 @@ ol ol ol ol { list-style-type: upper-alpha; }
 .nb { color: #07a; } /* Name.Builtin */
 .ow { color: #444; } /* Operator.Word */
 .w { color: #bbb; } /* Text.Whitespace */
-.m, .mf, .mh, .mi, .mo, .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #275; } 
+.m, .mf, .mh, .mi, .mo, .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #275; }
 .bp { color: #999; } /* Name.Builtin.Pseudo */
 .vc, .vg, .vi, .il { color: #099; } /* Literal.Number.Integer.Long */
-
