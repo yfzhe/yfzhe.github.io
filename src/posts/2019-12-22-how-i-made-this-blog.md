@@ -36,7 +36,13 @@
 
 （不过，不得不说，直接从 catalog 上拉下来 pre-built 的包，速度是真快。Frog 本身没有把实现和文档拆开，导致普通安装会去下载不少的依赖，而从 catalog 下载直接一次就可以了。一个小技巧：在这种环境安装 Frog 的时候可以开启 `--no-docs`，即使用 `raco pkg install --auto --no-docs frog` 来安装。这样 Racket 不会去编译安装本地文档，可以节省不少时间。）
 
-于是老实换上 install-racket.sh。所有使用 install-racket.sh 的地方都会有这么一句——"`export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us`[bash]"。接下来，问题就出在这个自己来设置一下 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇[相关的帖子](https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554)，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
+于是老实换上 install-racket.sh。所有使用 install-racket.sh 的地方都会有这么一句：
+
+```bash
+export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us
+```
+
+接下来，问题就出在这个自己来设置一下 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇[相关的帖子](https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554)，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
 
 至于构建之后部署的事情，就是添加一下 ssh key，git commit 一下，再 push 到 master 分支。上面的两篇教程里都说得挺好，这里就不多说了。值得一提的一点（或许其实只有我不知道）：Circle CI 官方博客里的那篇说了一个小技巧：在 git message 里加一个 "[skip ci]"（任何位置都行），就可以让 ci 忽略为了部署而做的这次 commit 了，有效解决强迫症患者看到 master 总是失败的痛苦。
 
