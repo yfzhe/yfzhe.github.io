@@ -156,8 +156,8 @@ main a:visited {
 
 .footnotes {
   font-size: 0.9em;
-  word-break: break-all;
   margin-top: 4.5em;
+  overflow-wrap: break-word;
 }
 .footnotes ol {
   padding-left: 30px;
