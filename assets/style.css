@@ -73,13 +73,15 @@ section {
   margin: 2.5em 0;
 }
 
-article {}
+article {
+  margin: 2.5em 0 1.5em;
+}
 
-h1 { font-size: 2em; }
-h2 { font-size: 1.75em; }
+h1.title { font-size: 1.8em; }
+
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.3em; }
 h3 {}
-
-p {}
 
 article p {
   line-height: 1.5;
