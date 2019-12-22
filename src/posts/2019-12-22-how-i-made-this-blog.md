@@ -26,19 +26,21 @@
 
 开始动手做这个博客的时候，Github Actions 还没出来；好像挺多都在用 Travis。不过，有一次发现 Circle CI 的博客写了挺多关于 clojure 的内容，<del>秉持着 Lisp 惺惺相惜的态度，</del>我决定要用 Circle CI 来做这个自动部署。于是，梦魇来了。
 
-自动部署这里最先，也是主要的参考资料是 [lexi-lambda](https://lexi-lambda.github.io) 的一篇文章[^2]。另外 Circle CI 也有一篇说把文档部署当 Github Pages 上的文章[^3]。正常情况下这两篇博客就够了，但是怎么可能是正常情况！如果是正常情况，我显然就不写了。
+自动部署这里最先，也是主要的参考资料是 [lexi-lambda](https://lexi-lambda.github.io) 的一篇文章[^2]。另外 Circle CI 也有一篇说把文档部署到 Github Pages 上的文章[^3]。正常情况下这两篇博客就够了，但是怎么可能是正常情况！如果是正常情况，我显然就不写了。
 
 自动把博客部署到 GitHub Pages 上主要这么几步：先准备好博客框架的环境，然后渲染博客的内容，最后 commit 到对应的 repo 上。
 
-那么第一步，安装博客框架的环境，我这里的情况，就是安装 Racket 和 Frog 了。这里就是主要坑的地方！一般的操作，和 lexi-lambda 那一篇博客里写的步骤都是，使用 Greg Hendershott 的 [travis-racket](https://github.com/greghendershott/travis-racket) 里的 [install-racket.sh](https://github.com/greghendershott/travis-racket/blob/master/install-racket.sh) 这个脚本安装 Racket。 然而，Circle CI 支持 docker，所以想着用 racket-docker 而不是用一个脚本来下载。
+那么第一步，安装博客框架的环境，我这里的情况，就是安装 Racket 和 Frog 了。这里就是主要坑的地方！Racket 世界一般的操作，包括 lexi-lambda 那一篇博客里写的，都是使用 Greg Hendershott 的 [travis-racket](https://github.com/greghendershott/travis-racket) 里的 [install-racket.sh](https://github.com/greghendershott/travis-racket/blob/master/install-racket.sh) 这个脚本安装 Racket。 然而，Circle CI 支持 docker，所以想着用 racket-docker 而不是用一个脚本来处理 racket 环境。
 
 结果 racket-docker 先是没有按时间更新到最新的 Racket 版本，而且它设置了下载包是从 Racket 的 package catalog 里直接现在预编译好的包。结果：首先，没有更新到最新版本，而 package catalog 里只有最新版本的编译后文件；后来，racket-docker 更新到了最新的 7.5 版本，但是在构建博客的时候 frog 会报错导致无法构建博客。原因居然是——Frog 运行的主函数 `main` 每次运行，都会先打印一下当前的版本号。为了兼容低版本，没办法用直接获取 info.rkt 里文件里的版本号；而作者又不愿在不同的地方写多遍版本号。于是决定直接对 info.rkt 文件做一通正则匹配，人工找出版本号。然后，因为 racket-docker 会安装 pre-built 的版本，这里的 info.rkt 也是编译过的，是展开后的格式，所以正则就在这里挂了，嗯，就这么挂了。[^4]
 
-于是老实换上 install-racket.sh。所有使用 install-racket.sh 的地方都会有这么一句——"`export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us`[bash]"。接下来，问题就出在这个自己来设置一下 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇相关的帖子，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
+（不过，不得不说，直接从 catalog 上拉下来 pre-built 的包，速度是真快。Frog 本身没有把实现和文档拆开，导致普通安装会去下载不少的依赖，而从 catalog 下载直接一次就可以了。一个小技巧：在这种环境安装 Frog 的时候可以开启 `--no-docs`，即使用 `raco pkg install --auto --no-docs frog` 来安装。这样 Racket 不会去编译安装本地文档，可以节省不少时间。）
+
+于是老实换上 install-racket.sh。所有使用 install-racket.sh 的地方都会有这么一句——"`export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us`[bash]"。接下来，问题就出在这个自己来设置一下 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇[相关的帖子](https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554)，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
 
 至于构建之后部署的事情，就是添加一下 ssh key，git commit 一下，再 push 到 master 分支。上面的两篇教程里都说得挺好，这里就不多说了。值得一提的一点（或许其实只有我不知道）：Circle CI 官方博客里的那篇说了一个小技巧：在 git message 里加一个 "[skip ci]"（任何位置都行），就可以让 ci 忽略为了部署而做的这次 commit 了，有效解决强迫症患者看到 master 总是失败的痛苦。
 
-最终，经历了 50+ 条失败的 pipeline，终于把这个自动部署的配置文件弄出来了。真的是太不容易了。
+最终，经历了 50+ 条失败的 pipeline，终于把这个自动部署的配置文件[^5]弄出来了。真的是太不容易了。
 
 # 最后一点小事：license
 
@@ -61,3 +63,5 @@
 [^3]: <https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/>
 
 [^4]: 关于这个我去 frog 的 github 上提了 [issue](https://github.com/greghendershott/frog/issues/253)，后来 Greg Hendershott 也做了一些修复。<br />当年做了非常多 Racket 相关的东西的 Greg，居然因为 Racket2，放下了更新的步伐——甚至前段时间还把有些 repo 存档了（虽然后来又都取消存档），真是让人唏嘘啊。
+
+[^5]: 我的配置文件在 <https://github.com/yfzhe/yfzhe.github.io/blob/source/.circleci/config.yml>，如果也有处于非正常情况下的人需要参考的话。正常情况，还是前面的两篇博客（中的任何一篇）就够了。
