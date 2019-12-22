@@ -19,7 +19,7 @@
   ;; Here we pass the xexprs through a series of functions.
   (~> xs
       (syntax-highlight #:line-numbers? #f
-                        #:css-class "source")
+                        #:css-class "code-source")
       ;(auto-embed-tweets #:parents? #t)
       (add-racket-doc-links #:code? #t #:prose? #f)))
 
