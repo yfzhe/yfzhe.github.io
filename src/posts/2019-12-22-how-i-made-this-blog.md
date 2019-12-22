@@ -14,7 +14,7 @@
 
 这里简要做一点背景介绍：Frog 和 Pollen 都是用 Racket 做的项目，也是 GitHub 上 star 数比较靠前的项目了。Frog 的定位就是一个博客框架，可以使用 markdown 和 Racket 自带的一个文档语言——[Scribble](https://docs.racket-lang.org/scribble/index.html) 来写文章。有各类博客需要的功能：RSS，站点地图，还有一些小工具，比如 GA，比如 Disqus。一点缺陷就是自带的主题不太好看，基本是每个用户都要自己改造一下的情况。而 Pollen 则是在 Racket 上的一个「图书出版系统」（book-publishing system)，拿来做书（不管是数字的 HTML 还是更纸质的 TeX / PDF）非常合适好用；不过用来做博客就需要不少折腾了。
 
-好，回到正题，为了扩展性和可玩性选择了 Pollen，这才是痛苦的开始。但是用 Pollen 写博客翻了挺多 pollen 的邮件列表里的帖子，也照着这个项目[^1]折腾了挺多。Pollen 通过 xexpr，meta 和 ptree 提供了非常强大的自定义能力。不过这样的自定义能力也就意味着需要做很多的事情，而 Pollen 的资料一直不多，对它们的了解不太深入，如果一直都玩不太顺。折腾一个 RSS 都花费了很长时间，成了压倒我的最后一棵稻草。现在电脑里留着一份当时基于 Pollen 的那个项目，最后的修改时间是 19 年 2 月。看来这一个博客折腾的历史确实也挺久的了。
+好，回到正题，为了扩展性和可玩性选择了 Pollen，这才是痛苦的开始。但是用 Pollen 写博客翻了挺多 pollen 的邮件列表里的帖子，也照着[这个项目](https://github.com/otherjoel/thenotepad)[^1]折腾了挺多。Pollen 通过 xexpr，meta 和 ptree 提供了非常强大的自定义能力。不过这样的自定义能力也就意味着需要做很多的事情，而 Pollen 的资料一直不多，对它们的了解不太深入，如果一直都玩不太顺。折腾一个 RSS 都花费了很长时间，成了压倒我的最后一棵稻草。现在电脑里留着一份当时基于 Pollen 的那个项目，最后的修改时间是 19 年 2 月。看来这一个博客折腾的历史确实也挺久的了。
 
 从 Pollen 换到 Frog 也不意味从头开始。前面说了用 Frog 也要自己重整模板；而之前在 Pollen 上的折腾就直接拿过来用了。Frog 的模板（实际是复用 Racket 自带的 [web-server 里的](https://docs.racket-lang.org/web-server/templates.html)）也还不错，可玩性也还挺大（而且还有 enhance-body，有精力的话可以可以做到和 Pollen 差不多的自定义能力了）。迁移过来之后，花了点时间升级了一下样式（虽然依旧被某网友吐槽很差），再加上前面一条 Hello World，就差不多是博客的骨架部分了。
 
@@ -62,12 +62,12 @@ export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us
 
 到现在博客就折腾到了这里，也还有些东西没弄，比如评论区，比如流量统计。先这样吧，我去写下一篇文章了。
 
-[^1]: <https://github.com/otherjoel/try-pollen><br />应该是最大（或许就是唯一）的用 Pollen 做博客的例子，功能非常丰富。作者的博客里也很多相关的内容。
+[^1]: 应该是最大（或许就是唯一）的用 Pollen 做博客的例子，功能非常丰富。这个项目的作者算是在 Pollen 社区比较活跃的人了，他的[博客](https://thenotepad.org)内也很多 Pollen 相关的内容。
 
 [^2]: <https://lexi-lambda.github.io/blog/2015/07/18/automatically-deploying-a-frog-powered-blog-to-github-pages/>
 
 [^3]: <https://circleci.com/blog/deploying-documentation-to-github-pages-with-continuous-integration/>
 
-[^4]: 关于这个我去 frog 的 github 上提了 [issue](https://github.com/greghendershott/frog/issues/253)，后来 Greg Hendershott 也做了一些修复。<br />当年做了非常多 Racket 相关的东西的 Greg，居然因为 Racket2，放下了更新的步伐——甚至前段时间还把有些 repo 存档了（虽然后来又都取消存档），真是让人唏嘘啊。
+[^4]: 关于这个我去 frog 的 github 上提了 [issue](https://github.com/greghendershott/frog/issues/253)，后来 Greg Hendershott 也做了一些修复。<br />当年做了非常多 Racket 相关的东西的 Greg，居然因为 Racket2，放下了更新的步伐——甚至前段时间还把有些 repo 存档了（虽然后来又都取消存档），真是让人挺难受的。
 
 [^5]: 我的配置文件在 <https://github.com/yfzhe/yfzhe.github.io/blob/source/.circleci/config.yml>，如果也有处于非正常情况下的人需要参考的话。正常情况，还是前面的两篇博客（中的任何一篇）就够了。
