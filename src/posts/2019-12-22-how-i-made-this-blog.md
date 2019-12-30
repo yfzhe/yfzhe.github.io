@@ -26,7 +26,7 @@
 
 开始动手做这个博客的时候，Github Actions 还没出来；好像挺多都在用 Travis。不过，有一次发现 Circle CI 的博客写了挺多关于 clojure 的内容，<del>秉持着 Lisp 惺惺相惜的态度，</del>我决定要用 Circle CI 来做这个自动部署。于是，梦魇来了。
 
-自动部署这里最先，也是主要的参考资料是 [lexi-lambda](https://lexi-lambda.github.io) 的一篇文章[^2]。另外 Circle CI 也有一篇说把文档部署到 Github Pages 上的文章[^3]。正常情况下这两篇博客就够了，但是怎么可能是正常情况！如果是正常情况，我显然就不写了。
+自动部署这里，我最先，也是最主要参考了 [lexi-lambda](https://lexi-lambda.github.io) 的一篇文章[^2]。另外也参看了 Circle CI 自己一篇关于把文档部署到 Github Pages 上的教程类博客[^3]（毕竟还是用 Circle CI 来做的嘛）。正常情况下这两篇博客就够了，但是怎么可能是正常情况！如果是正常情况，我显然就不写了。
 
 自动把博客部署到 GitHub Pages 上主要这么几步：先准备好博客框架的环境，然后渲染博客的内容，最后 commit 到对应的 repo 上。
 
@@ -42,9 +42,9 @@
 export PATH="${RACKET_DIR}/bin:${PATH}" # install-racket.sh can't set for us
 ```
 
-接下来，问题就出在这个自己来设置一下 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇[相关的帖子](https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554)，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
+接下来，问题就出在这个自行设置 `PATH` 上，每次执行完这段之后，接着准备用 `raco pkg install frog` 去安装 frog，ci 报错说找不到 racket。问题竟然是因为 Circle CI 不支持直接动态修改环境变量！！！去官方论坛找到了一篇[相关的帖子](https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554)，按帖子里几个楼里的解决方法依次试一下，才解决了 `PATH` 的问题。
 
-至于构建之后部署的事情，就是添加一下 ssh key，git commit 一下，再 push 到 master 分支。上面的两篇教程里都说得挺好，这里就不多说了。值得一提的一点（或许其实只有我不知道）：Circle CI 官方博客里的那篇说了一个小技巧：在 git message 里加一个 "[skip ci]"（任何位置都行），就可以让 ci 忽略为了部署而做的这次 commit 了，有效解决强迫症患者看到 master 总是失败的痛苦。
+至于构建之后部署的事情，就是添加一下 ssh key，git commit 一下，再 push 到 master 分支。上面的两篇教程里都说得挺好，这里就不多说了。值得一提的一点（或许其实只有我不知道）：Circle CI 官方博客里的那篇说了一个小技巧：在 commit message 里加一个 "[skip ci]"（任何位置都行），就可以让 ci 忽略为了git部署而做的这次 commit 了，有效解决强迫症患者看到 master 总是失败的痛苦。
 
 最终，经历了 50+ 条失败的 pipeline，终于把这个自动部署的配置文件[^5]弄出来了。真的是太不容易了。
 
