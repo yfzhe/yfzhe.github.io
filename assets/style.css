@@ -12,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  --main-width: 58%;
+  --main-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -95,9 +95,12 @@ article p {
   line-height: 1.6;
 }
 
+code, .code-source, .SCodeFlow {
+  font-family: "IBM Plex Mono", monospace;
+}
+
 code {
   padding: 0.05em 0.6em;
-  background-color: #f2faff;
 }
 
 .code-source, .SCodeFlow {
@@ -107,7 +110,6 @@ code {
   padding: 0.5em 2em;
   border-top: 3px solid #b2e5ff;
   background-color: #f2faff;
-  font-family: "IBM Plex Mono", monospace;
   font-size: 14px;
 }
 
@@ -189,11 +191,11 @@ footer p {
 }
 
 @media (max-width: 1080px) {
-  body { --main-width: 72%; }
+  body { --main-width: 68%; }
 }
 
 @media (max-width: 960px) {
-  body { --main-width: 80%; }
+  body { --main-width: 76%; }
 }
 
 @media (max-width: 800px) {
