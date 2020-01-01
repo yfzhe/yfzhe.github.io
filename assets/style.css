@@ -6,7 +6,7 @@ html {
 * { box-sizing: border-box; }
 
 body {
-  background-color: #fafafa;
+  background-color: #fdfdfd;
   line-height: 1.6;
   border: 0;
   margin: 0;
@@ -92,10 +92,10 @@ h2 {
 h3 {}
 
 article p {
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
-code, .code-source, .SCodeFlow {
+code, .code-source pre, .SCodeFlow {
   font-family: "IBM Plex Mono", monospace;
 }
 
@@ -107,10 +107,15 @@ code {
   width: 85%;
   overflow-x: auto;
   margin: 2em auto;
-  padding: 0.5em 2em;
+  padding: 1em 2em;
   border-top: 3px solid #b2e5ff;
-  background-color: #f2faff;
+  background-color: #f5fdff;
   font-size: 14px;
+}
+
+.SCodeFlow p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .code-source pre {
@@ -334,7 +339,7 @@ ol ol ol ol { list-style-type: upper-alpha; }
 
 .RktValLink, .RktStxLink, .RktModLink {
   text-decoration: none;
-  color: #07a;
+  color: #0572a0;
   font-size: 1em;
 }
 
@@ -354,9 +359,9 @@ ol ol ol ol { list-style-type: upper-alpha; }
 .gs { } /* Generic.Strong */
 .gu { color: #aaa; } /* Generic.Subheading */
 .gt { color: #a00; } /* Generic.Traceback */
-.k, .kc, .kd, .kn, .kp, .kr, .kt  { color: #07a; } /* Keyword */
+.k, .kc, .kd, .kn, .kp, .kr, .kt  { color: #0572a0; } /* Keyword */
 .na, .nc, .no, .nd, .ni, .ne, .nf, .nl, .nn, .nt, .nv { color: #444; }
-.nb { color: #07a; } /* Name.Builtin */
+.nb { color: #0572a0; } /* Name.Builtin */
 .ow { color: #444; } /* Operator.Word */
 .w { color: #bbb; } /* Text.Whitespace */
 .m, .mf, .mh, .mi, .mo, .s, .sb, .sc, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #275; }
