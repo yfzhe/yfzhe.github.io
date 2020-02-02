@@ -36,22 +36,16 @@ jobs:
       - run:
           name: deploy
           command: |
-            cd out
-            git init
+            if [ ${CIRCLE_BRANCH} == "source" ]
+            then
+              cd out
+              git init
 
-            git config user.name "circle-ci"
-            git config user.email "yfzhe@user.noreply.github.com"
+              git config user.name "circle-ci"
+              git config user.email "yfzhe@user.noreply.github.com"
 
-            git add .
-            git commit -m "deploy [skip ci]"
+              git add .
+              git commit -m "deploy [skip ci]"
 
-            git push --force --quiet "https://github.com/yfzhe/yfzhe.github.io" master
-
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: source
+              git push --force --quiet "https://github.com/yfzhe/yfzhe.github.io" master
+            fi
