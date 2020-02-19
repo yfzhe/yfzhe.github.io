@@ -1,22 +1,40 @@
 #lang racket/base
-(require (for-syntax racket/base syntax/parse)
-         scribble/core
+(require scribble/core
          scribble/base
-         scribble/example)
+         scribble/html-properties
+         scribble/example
+         (for-syntax racket/base syntax/parse)
+         racket/contract)
 
-(provide section*
+(provide section* hr
+         (contract-out ($ (-> string? ... string?))
+                       ($$ (-> string? ... string?)))
          racketblock+eval examples0
-         make-base-eval
          full-url-on-github
-         source-code-github-link
-         (rename-out [subscript sub]
-                     [superscript sup]))
+         source-code-github-link)
 
-;;; `section` from scribble but do not add a section number before title
+;;; Elements
+;; `section` from scribble but do not add a section number before title
 (define (section* . e)
   (section #:style (style #f (list 'unnumbered))
            e))
 
+;; implement custom element, see:
+;; https://docs.racket-lang.org/scribble/extra-style.html
+;; hr
+(define (hr)
+  (elem #:style
+        (style #f
+               (list (alt-tag "hr")))))
+
+;; math (KaTeX)
+(define ($ . e)
+  (apply string-append `("\\(" ,@e "\\)")))
+
+(define ($$ . e)
+  (apply string-append `("$$" ,@e "$$")))
+
+;;; Code and interactive
 ;;; customized `racketblock` and `examples`
 (define-syntax (racketblock+eval stx)
   (syntax-parse stx
@@ -34,7 +52,8 @@
                  #:label #f
                  code ...)]))
 
-;;; some code examples in the github repo
+;;; Misc
+;; some code examples in the github repo
 (define *code-path-prefix*
   "https://github.com/yfzhe/yfzhe.github.io/blob/source/")
 
@@ -44,4 +63,3 @@
 (define (source-code-github-link file-path)
   (hyperlink (string-append *code-path-prefix* "code/" file-path)
              file-path))
-
