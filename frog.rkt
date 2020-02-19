@@ -7,7 +7,7 @@
   (current-scheme/host "https://yfzhe.github.io")
   (current-title "看看就好的博客")
   (current-author "yfzhe")
-  (current-permalink "/blog/{year}/{month}/{filename}.html")
+  (current-permalink "/posts/{year}/{month}/{filename}.html")
   (current-feed-full? #t)
   (current-max-feed-items 50)
   (current-source-dir "src")
