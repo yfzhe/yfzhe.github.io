@@ -27,9 +27,9 @@ Tags: memoize, racket, macro
 写起来很简单，但是我们跑一下试试？
 
 @(examples0 #:eval evaluator
-  (time (fib 40)))
+  (time (fib 30)))
 
-才 @code{(fib 40)} 就跑成这样，太慢了。因为对于 @${n > 1} 的情况来说，虽然 @code{(fib (- n 2))} 在 @code{(fib (- n 1))} 的计算中计算过，但是在 @code{(fib n)} = @code{(+ (fib (- n 1)) (fib (- n 2)))} 里还要再算一次，导致效率很低。不过，在正常的（支持）函数式编程语言里，我们可以利用尾调用优化，将递归写成尾递归的形式来提升运行速度。以下是尾递归的版本：
+才 @code{(fib 30)} 就跑成这样，太慢了。因为对于 @${n > 1} 的情况来说，虽然 @code{(fib (- n 2))} 在 @code{(fib (- n 1))} 的计算中计算过，但是在 @code{(fib n)} = @code{(+ (fib (- n 1)) (fib (- n 2)))} 里还要再算一次，导致效率很低。不过，在正常的（支持）函数式编程语言里，我们可以利用尾调用优化，将递归写成尾递归的形式来提升运行速度。以下是尾递归的版本：
 
 @(racketblock+eval #:eval evaluator
   (define (fib/acc* n acc0 acc1)
@@ -40,10 +40,10 @@ Tags: memoize, racket, macro
   (define (fib/acc n)
     (fib/acc* n 0 1)))
 
-同样拿 @code{(fib 40)} 跑一下：
+同样拿 @code{(fib 30)} 跑一下：
 
 @(examples0 #:eval evaluator
-  (time (fib/acc 40)))
+  (time (fib/acc 30)))
 
 可以看到，将 fib 函数写成尾递归版本，运行速度就快了非常多。至于尾递归，不在本文的范围内，所以就不再往下写了（也许未来会写一篇关于尾调用的文章）。
 
@@ -72,13 +72,13 @@ Memoize，有的翻译成「记忆化」。对于一个函数 @${f(x)}，memoize
 来看一下运行效率：
 
 @(examples0 #:eval evaluator
-  (time (fib/memo 40)))
+  (time (fib/memo 30)))
 
 还行。再跟尾递归的版本比较一下：
 
 @(examples0 #:eval evaluator
-  (time (for ([i (in-range 2000)]) (fib/acc i)))
-  (time (for ([i (in-range 2000)]) (fib/memo i))))
+  (time (for ([i (in-range 1000)]) (fib/acc i)))
+  (time (for ([i (in-range 1000)]) (fib/memo i))))
 
 在多次反复计算的情况下，memoized 版本的优势就出来了。
 
@@ -168,6 +168,12 @@ Memoize，有的翻译成「记忆化」。对于一个函数 @${f(x)}，memoize
 
 同样地，测试一下：
 
+@(evaluator
+  '(begin
+     (collect-garbage)
+     (collect-garbage)
+     (collect-garbage)))
+
 @(examples0 #:eval evaluator
   (eval:no-prompt
    (define/memo* (fib/memo* n)
@@ -176,7 +182,7 @@ Memoize，有的翻译成「记忆化」。对于一个函数 @${f(x)}，memoize
        [(= n 1) 1]
        [else (+ (fib/memo* (- n 1)) (fib/memo* (- n 2)))])))
 
-  (time (for ([i (in-range 2000)]) (fib/memo* i))))
+  (time (for ([i (in-range 1000)]) (fib/memo* i))))
 
 这样，通过 @code{define/memo*}（以及 @code{lambda/memo*}）定义的「函数」实际是一个 @code{proc/memo} 的实例。它可以当作普通函数来使用，不同的是，我们可以通过 @code{proc/memo-memo} 来获取之前已经计算过的结果啦。这个 api 可能有点难看，我们给它换一个名字：
 
@@ -184,7 +190,7 @@ Memoize，有的翻译成「记忆化」。对于一个函数 @${f(x)}，memoize
   (eval:no-prompt
    (define get-memoized proc/memo-memo))
 
-  (code:comment "让我们来看一下都保存了多少条的结果：（虽然它肯定是 2000）")
+  (code:comment "让我们来看一下都保存了多少条的结果：（虽然它肯定是 1000）")
   (hash-count (get-memoized fib/memo*)))
 
 @(close-eval evaluator)
