@@ -101,6 +101,7 @@ article p {
 
 code, .code-source pre, .SCodeFlow {
   font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9em;
 }
 
 code {
@@ -114,7 +115,6 @@ code {
   padding: 1em 2em;
   border-top: 3px solid #b2e5ff;
   background-color: #f5fdff;
-  font-size: 14px;
 }
 
 .SCodeFlow p {
@@ -343,7 +343,6 @@ ol ol ol ol { list-style-type: upper-alpha; }
 
 .RktValLink, .RktStxLink, .RktModLink {
   text-decoration: none;
-  color: #0572a0;
   font-size: 1em;
 }
 
