@@ -186,10 +186,29 @@ main a:visited {
   text-align: center;
 }
 
+/* prev and next posts */
+.prev-and-next {
+  margin: 2em auto 1em;
+  padding: 10px;
+  display: flex;
+}
+
+.prev, .next {
+  width: 50%;
+  margin: 0 8px;
+}
+
+.prev-title, .next-title {
+  color: #565656;
+  font-size: 1.2em;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+
 /* footer */
 footer {
   width: var(--main-width);
-  margin: 1.2em auto;
+  margin: 1em auto;
   padding: 0;
   font-size: 0.9em;
   color: #606060;
@@ -222,6 +241,14 @@ footer p {
   header nav li {
     margin-left: 1em;
     margin-right: 1em;
+  }
+
+  .prev-and-next {
+    flex-direction: column;
+  }
+  .prev, .next {
+    width: 100%;
+    margin: 8px 0;
   }
 }
 
