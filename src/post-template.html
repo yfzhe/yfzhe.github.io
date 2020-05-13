@@ -7,18 +7,18 @@
 </article>
 @;disqus-comments["shortname"]
 <div class="prev-and-next">
-  <div class="prev">
-    @(when older-uri
-      @list{
-        <div class="prev-title">prev</div>
-        <div><a href="@|older-uri|">@|older-title|</a></div>
-      })
-  </div>
-  <div class="next">
-    @(when newer-uri
-      @list{
-        <div class="next-title">next</div>
-        <div><a href="@|newer-uri|">@|newer-title|</a></div>
-      })
-  </div>
+  @(when older-uri
+    @list{
+      <div class="prev">
+        &larr;
+        <a href="@|older-uri|">@|older-title|</a>
+      </div>
+     })
+  @(when newer-uri
+    @list{
+      <div class="next">
+        &rarr;
+        <a href="@|newer-uri|">@|newer-title|</a>
+      </div>
+    })
 </div>
