@@ -1,5 +1,5 @@
 @(define final-title
-   (if tag ; if it is a /tags post
+   (if tag  ; if it is a "/tags" post
        @list{“@|tag|”标签下的内容}
        title))
 
@@ -28,11 +28,11 @@
     <header class="header-page">
       <div class="site-title">
         <div class="logo logo-inline"><div class="logo-rect"></div></div>
-        <p><a href="/index.html" id="sitetitle-link-blog-index">看看就好的博客</a></p>
+        <p><a href="/" id="sitetitle-link-blog-index">看看就好的博客</a></p>
       </div>
       <nav>
         <ul>
-      <li><a href="/index.html">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="@|rss-feed-uri|" class="rss">RSS</a></li>
           <li><a href="/about.html">About</a></li>
         </ul>
