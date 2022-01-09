@@ -258,6 +258,11 @@ footer p {
   }
 }
 
+/* some special style classes */
+.text-center {
+  text-align: center;
+}
+
 
 /* site logo */
 .logo {
