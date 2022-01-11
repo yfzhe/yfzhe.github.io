@@ -1,6 +1,6 @@
     Title: 译："A closure is poor man's object, an object is poor man's closure."
     Date: 2022-01-08T21:52:38
-    Tags: programming paradigm
+    Tags: programming, programming paradigm
 
 编程范式的讨论，应该算是程序员社区的日常话题。函数式编程和面向对象，分别是什么，
 孰优孰劣，总是争论不休，如同无休无止的宗教战争。而 closure 和 object，可以称作是
@@ -32,7 +32,9 @@ Scheme 真的是一门“函数式编程”语言吗？然后就引发了长长�
 按理这个句子，特别是作为文章的标题，也应该翻译出来；但是我在 “poor man” 一词
 该如何翻译上犯了难。其他地方多是译为“穷人”，但是我更想译为“可怜人”。于是标题译为：
 
-<h1 class="text-center">闭包是可怜人的对象，对象是可怜人的闭包</h1>
+<h1 class="text-center">
+闭包是可怜人的对象，对象是可怜人的闭包
+</h1>
 
 另外，原文开头是几层的引用回复，这里为了便于阅读理解，也为了排版方便，
 把几段引文拆出来，按先后顺序线性排开，同时在每段后面增加了原文的出处的链接。
@@ -42,10 +44,10 @@ Scheme 真的是一门“函数式编程”语言吗？然后就引发了长长�
 
 ---
 
-## Anton van Straaten 于 2003-06-03 20:23:57 -0400
+## Anton van Straaten 于 2003-06-03 20:23:57 -0400：
 
 我可以部分同意你的观点；但真的，如果没有闭包，人们会用——也正在用——
-种种诡异的方法来解决[^2]——就比如，对象 ;o)
+种种不优雅的怪异的方法[^2]——就比如，对象 ;o)
 
 <http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03257.html>
 
@@ -80,27 +82,29 @@ parameterization of behavior)。任何在 Java 或 C++ 里尝试函数式编程�
 作为一个单一的语言所提供的方法分派机制。将闭包视为用以实现对象的构成单元，那么
 显而易见，对象是可怜人的闭包。
 
-但是 Smalltalk 用户可能会说，等等，如果你要费尽心思去在你的语言里实现闭包这样的
+但是 Smalltalk[^3] 用户可能会说，等等，如果你要费尽心思去在你的语言里实现闭包这样的
 东西，既然这闭包已经和对象非常相似了，为什么不一路走下去，实现“真正”的，支持任意
 数量的方法的，对象呢？那这时闭包不过是一种特殊情况下的对象。如果你的语言里只有
 这些受限的闭包，而你却又不得不在此之上实现一个对象系统，那显然闭包是可怜人的对象。
 
 这两种对立观点间的冲突我无意解决，我认为这个关于闭包和对象的问题应该成为一个公案。
-我会去拿到禅法认证[^3]，并将 Norman Adams（被认为是“对象是可怜人的闭包”的提出者）
+我会去拿到禅法认证[^4]，并将 Norman Adams（被认为是“对象是可怜人的闭包”的提出者）
 和 Christian Queinnec（“闭包是可怜人的对象”）结合成一个大禅师，称为 Qc Na。
 我还会不太谦虚地把自己以一个学生的身份放到这则故事里，正如我在这条消息的最后一段
 里提过的：
-<http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html>...[^4]
+<http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html>...[^5]
 我认为我确实是在思考这两种看似对立的角度中获得了一些启迪。下面是这则公案：
 
-<div class="text-center">* * *</div>
+<div class="text-center">
+* * *
+</div>
 
 德高望重的 Qc Na 大师正和弟子 Anton 散步。想和师父讨论问题，Anton 打开了话茬，
 “师父，我听说对象是个很好的东西，这是真的吗？”Qc Na 大师眼含怜悯看着学生，回答，
 “傻孩子，对象不过是可怜人的闭包罢了。”
 
 收到训斥，Anton 从师父身边离开回到自己的小屋，决心研究闭包。他仔细阅读整个
-“Lambda: The Ultimate...” 系列的论文和其他相关的论文；又实现了一个小的 Scheme
+“Lambda: The Ultimate...”[^6] 系列的论文和其他相关的论文；又实现了一个小的 Scheme
 解释器，其中包含一个基于闭包的对象系统。他收获颇丰，期待向师父展示自己的进展。
 
 再一次和 Qc Na 大师散步时，Anton 试图让老师惊讶：“师父，我已经仔细学习了这个
@@ -111,6 +115,11 @@ parameterization of behavior)。任何在 Java 或 C++ 里尝试函数式编程�
 
 [^1]: 指这个讨论串的第一条消息。
 [^2]: 原文为 "use all sorts of hacks anyway"，这个 "hack" 实在难译。
-[^3]: 原文为 "I'll take some koanic license"。
-[^4]: 原文如此，这个链接现已失效，一个现在可访问的链接为
+[^3]: 一个经典的程序语言，最早的面向对象语言之一。强调消息传递（而不是方法调用）。
+      Alan Key 领衔设计。参见 Wikipedia：<https://en.wikipedia.org/wiki/Smalltalk>。
+[^4]: 原文为 "I'll take some koanic license"。
+[^5]: 原文如此，这个链接现已失效，一个现在可访问的链接为
       <http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg01488.html>
+[^6]: 由 Guy L. Steele 和 Gerald Jay Sussman 完成的一系列论文（前者也在本文中出现），
+      提出了 Scheme 和整个函数式编程领域中诸多重要概念和技术。"Lambda the ultimate"
+      本身也成为函数式编程社区里的一个标语。
