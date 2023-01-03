@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install racket
+        uses: Bogdanp/setup-racket@v1.9
+        with:
+          architecture: 'x64'
+          distribution: 'full'
+          variant: 'CS'
+          version: '8.7'
+
+      - name: install frog
+        run: raco pkg install --auto --no-docs frog
+
+      - name: install python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+
+      - name: install pygments
+        run: pip install --user pygments
+
+      - name: build
+        run: |
+          raco frog --build
+          cp -r assets out
+
+      - name: deploy to github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
