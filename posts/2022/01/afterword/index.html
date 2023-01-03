@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>译后记</title>
+    <meta name="description" content="其实也不算什么译后记。在翻译完前面一篇文章之后，没更多想说的了。 毕竟译文前面也写了很长一段，能憋出来的都写在里面了。开这一篇文章其实是因为前面 准备这篇译文的时候，把整个讨论串的消息都读了一遍，感觉其中有不少精彩的观点和论述， 摘录出来放到这里。  翻译太难，这里就直接放原文，不翻译了。斜体和粗体均为编者所加。和之前一样， 每段后面附上原文链接。后面的中文部分是我的一些想法。...">
+    <meta name="author" content="yfzhe">
+    <meta name="keywords" content="programming">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  href="/assets/favicon.png">
+    <link rel="canonical" href="https://yfzhe.github.io/posts/2022/01/afterword/">
+    <link rel="next" href="/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/">
+
+    <link rel="alternate" type="application/rss+xml" href="/feeds/all.rss.xml" title="RSS Feed">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|IBM+Plex+Mono:400,400italic,700,700italic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  </head>
+  <body>
+    <header class="header-page">
+      <div class="site-title">
+        <div class="logo logo-inline"><div class="logo-rect"></div></div>
+        <p><a href="/" id="sitetitle-link-blog-index">看看就好的博客</a></p>
+      </div>
+      <nav>
+        <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/feeds/all.rss.xml" class="rss">RSS</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+  <h1 class="title"><a href="/posts/2022/01/afterword/">译后记</a></h1>
+  <div class="meta">
+    <span class="meta-date">
+<time datetime="2022-01-11" pubdate="true">2022-01-11</time></span> :: <span class="meta-tags"><span class="tags"><a href="/tags/programming.html">programming</a></span></span>
+  </div>
+
+<p>其实也不算什么译后记。在翻译完<a href="https://yfzhe.github.io/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/">前面一篇文章</a>之后，没更多想说的了。 毕竟译文前面也写了很长一段，能憋出来的都写在里面了。开这一篇文章其实是因为前面 准备这篇译文的时候，把整个讨论串的消息都读了一遍，感觉其中有不少精彩的观点和论述， 摘录出来放到这里。</p>
+
+<p>翻译太难，这里就直接放原文，不翻译了。斜体和粗体均为编者所加。和之前一样， 每段后面附上原文链接。后面的中文部分是我的一些想法。</p>
+<!-- more-->
+
+<h1 id="关于抽象层次">关于抽象层次</h1>
+
+<p>I&rsquo;m not suggesting that Scheme relies on fewer lines of code than C, but rather that it doesn&rsquo;t really matter in either case. There are numerous abstraction layers at work here from the hardware (memory, cache layers, processor, etc.) through the OS and standard user-level library components up to the individual applications. <em>The beauty of abstraction layers is that when they work right you can ignore everything below the current layer.</em></p>
+
+<p>By Russ Ross, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03300.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03300.html</a></p>
+
+<p>有时候会看到一些人说，你用的这个环境/语言/平台把底层都封装起来了，程序员对 一些基本的事情都不了解，或者是没法做一些我想要的操作，这是个错误。但计算机科学 本身就是一层层抽象叠起来的。可能更重要的事情是先弄清楚你要在哪一个抽象层次上 操作，然后再做事情。</p>
+
+<h1 id="关于语言和性能">关于语言和性能</h1>
+
+<p>The fastest language of any of these ought to be hand-coded assembler - why aren&rsquo;t all the performance-sensitive folk using that? C and C++ occupy a very similar role today that assembler once did. As actual deployed language and compiler technology has improved, there&rsquo;s less and less reason to write substantial amounts of code in a language that&rsquo;s designed to mirror the architecture of a CPU. The strongest justification you can give today for C is that it&rsquo;s portable and highly-tuned across multiple architectures, i.e. the legacy argument. That one, I&rsquo;ll grant you.</p>
+
+<p>By Anton van Straaten, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03298.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03298.html</a></p>
+
+<p>不多说了。</p>
+
+<h1 id="关于-lazy-evaluation">关于 lazy evaluation</h1>
+
+<p>As for whether Haskell fans consider laziness crucial to a functional language, you might be surprised to find that not all of them do. In particular, <em>Simon Peyton Jones doesn&rsquo;t seem to find laziness essential</em> (see <a href="http://www.research.microsoft.com/~simonpj/papers/haskell-retrospective/index.htm">http://www.research.microsoft.com/~simonpj/papers/haskell-retrospective/index.htm</a>). What he thinks IS essential, as I&rsquo;ve said, is being &ldquo;purely functional,&rdquo; and he argues that the biggest benefit of sticking to laziness was that it forced them to stick to their pure functional guns, even when the going was very tough.</p>
+
+<p>By Matt Hellige, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03232.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03232.html</a></p>
+
+<p>对于很多 Haskell 人来说，lazy evaluation 都是他们心中函数式编程必要特性的集合中 必须的一个。再考虑到 Haskell 在函数式编程社区里 cult 般的地位，你会看到不少不用 Haskell 的人也认为 lazy evalution 是 fp 所必要的特性（去知乎上就能看到很多）。 但这里告诉我们，Haskell 的创造者（之一）也认为 laziness 并不是函数式编程所必须的。</p>
+
+<h1 id="关于-side-effects">关于 side effects</h1>
+
+<p>&gt; isn&rsquo;t functional programming just programming without side effects</p>
+
+<p>You can classify functional languages as pure/impure, lazy/eager. You tend to find that the lazy languages (Haskell, Clean, Miranda) are pure, and impure languages (Lisp, Scheme, ML) are eager. <em>There&rsquo;s no reason you can&rsquo;t have a pure eager language, but I can&rsquo;t think of one (anybody?).</em> Impure lazy languages aren&rsquo;t really feasible, because the laziness means that you can&rsquo;t predict when side-effects will occur, which is not useful if you use side-effects to perform I/O.</p>
+
+<p>By &ldquo;Bayley, Alistair&rdquo;, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03219.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03219.html</a></p>
+
+<p>十几年前（也快二十年了），pure eager language 还是理论上存在但现实中没有的东西。 但随着 algebraic effect 如火如荼的发展，现在能举出好几个这样的语言了。</p>
+
+<h2 id="关于-first-class-functions">关于 first-class functions</h2>
+
+<p>&gt; Functional programming is a style, typified by the use of first-class functions, and higher-order functions (functions that take functions as arguments and apply them, and functions that return functions).</p>
+
+<p>There&rsquo;s another reason that higher-order functions tend to go hand-in-hand with functional languages, and it&rsquo;s a paradigmatic one. Since functional languages are generally founded on the idea that &ldquo;everything is a function,&rdquo; we&rsquo;d like them to be able to realize this model. <em>The locus classicus for this idea is, of course, lambda calculus, in which one may model any traditional computing construct using only functions, from the Church numerals on up.</em> Naturally, all these functions are higher-order and anonymous. So the natural translation of lambda-calculus ideas to a practical language BEGINS with higher-order anonymous functions, rather than ending there. It is, in fact, the introduction of non-lambda binding constructs and non-functional primitive data that is, in some sense, a perversion&hellip;</p>
+
+<p><em>This is not so different from the object-oriented idea that everything is be an object, or the older &ldquo;von Neumann idea&rdquo; that everything is a mutable cell.</em> It&rsquo;s just that in order for everything to be a function, some of those functions need to be higher-order.</p>
+
+<p>By Matt Hellige, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03236.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03236.html</a></p>
+
+<p>我自己从来没能回到 lambda calculus 这个本源来考虑 first-class functions 的问题。 是的，在 lambda calculus 里，所有的值都是用函数来表示的，true 和 false 是这样， 自然数也是借由 Church encoding 通过 lambda 表示出来。上面的这个视角很有意思。</p>
+
+<h1 id="关于用-scheme-来实现语言">关于用 Scheme 来实现语言</h1>
+
+<p>Describing it as &ldquo;a book about how to implement a Scheme in Scheme&rdquo; rather misses the point. One point being missed is the importance (or lack thereof) of typical language syntaxes. <em>Think of Scheme for this purpose as a simple and consistent way of representing abstract syntax trees for any language.</em> That&rsquo;s why it has little obvious &ldquo;syntax&rdquo; other than parentheses, and how you can do things like express XML natively in Scheme (see e.g. SXML).</p>
+
+<p>When you see a snippet of code in EOPL that&rsquo;s written in one of the book&rsquo;s own languages, don&rsquo;t think of it as Scheme - think of it as the essential semantic core of a language which could have any of a variety of surface syntaxes. The EOPL languages already have some syntax, provided by macros, but this also can be thought of as a kind of core/internal syntax. <em>You could take any of the EOPL languages and use a lexer and parser generator to quite easily create a more traditional syntactic surface, which maps to the exact code in the EOPL book.</em> What you&rsquo;d end up with would look as much like any traditional language as you want it to (although your semantic core would be better designed). So for the purposes of EOPL, C/C++ and a language&rsquo;s surface syntax are both distractions.</p>
+
+<p>What I&rsquo;m describing might sound impractical to the uninitiated - maybe you wouldn&rsquo;t want to implement a &ldquo;real&rdquo; language on top of a Scheme-like core. The only problem with this assumption is it&rsquo;s completely wrong: there are any number of real languages that do exactly this. <em>Every functional language that can be compiled to a bytecode, including Haskell and various ML varieties, compiles to a bytecode that bears a strong resemblance to Scheme.</em></p>
+
+<p>Why is that? It&rsquo;s because <em>Scheme is an expression of some core mathematical ideas about computation: <strong>a relatively minimal set of features that provides a complete computational framework</strong>.</em> If you&rsquo;re implementing a functional language, when you get down to its core, below the syntax and the derived semantic features, you&rsquo;re likely to end up with something that looks a heck of a lot like a Scheme core.</p>
+
+<p>By Anton van Straaten, <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03292.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03292.html</a></p>
+
+<p>用 S-expression 来做 AST，以尽量少的功能同时尽量少的限制来提供丰富的表达能力， 这是 Scheme 的两个财富。上面加粗的句子，在 rnrs 里也可以找到同样的精神：</p>
+
+<blockquote>
+ <p>Programming languages should be designed not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary.</p></blockquote>
+
+<h1 id="one-more-thing">One more thing&hellip;</h1>
+
+<p>前面说不知道怎么翻译 &ldquo;poor man&rdquo;，<a href="https://citreu.gitlab.io">@Zhu Aisi</a> 说可以这么翻译：</p>
+
+<div class="text-center">闭包是消费降级的对象，对象是消费降级的闭包</div>
+
+<p>可以说是一个颇具时代精神的译法了，特意记在这里。</p>
+</article>
+<div class="prev-and-next">
+  <div class="prev">
+    &larr;
+    <a href="/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/">译："A closure is poor man&rsquo;s object, an object is poor man&rsquo;s closure."</a>
+  </div>
+
+</div>
+    </main>
+    <footer>
+      <p>&copy; 2019 - 2022, yfzhe.</p>
+      <p>Posts released under <a href="https://creativecommons.org/licenses/by-sa/4.0/"><strong>CC BY-SA 4.0</strong></a> license.</p>
+      <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+    the <strong>fr</strong>ozen bl<strong>og</strong> tool, built on
+        <a href="https://racket-lang.org">Racket</a>.
+      </p>
+    </footer>
+  </body>
+</html>

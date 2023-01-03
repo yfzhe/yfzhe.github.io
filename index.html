@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>看看就好的博客</title>
+    <meta name="description" content="看看就好的博客">
+    <meta name="author" content="yfzhe">
+    <meta name="keywords" content="macro, programming, meta, all, programming paradigm, memoize, racket">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  href="/assets/favicon.png">
+    <link rel="canonical" href="https://yfzhe.github.io/index.html">
+
+
+    <link rel="alternate" type="application/rss+xml" href="/feeds/all.rss.xml" title="RSS Feed">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|IBM+Plex+Mono:400,400italic,700,700italic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  </head>
+  <body>
+    <header class="header-page">
+      <div class="site-title">
+        <div class="logo logo-inline"><div class="logo-rect"></div></div>
+        <p><a href="/" id="sitetitle-link-blog-index">看看就好的博客</a></p>
+      </div>
+      <nav>
+        <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/feeds/all.rss.xml" class="rss">RSS</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+  <h1 class="title"><a href='/posts/2022/01/afterword/'>译后记</a></h1>
+  <div class="meta">
+    <span class="meta date">
+<time datetime="2022-01-11" pubdate="true">2022-01-11</time></span> :: <span class="tag"><span class="tags"><a href="/tags/programming.html">programming</a></span></span>
+  </div>
+
+<p>其实也不算什么译后记。在翻译完<a href="https://yfzhe.github.io/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/">前面一篇文章</a>之后，没更多想说的了。 毕竟译文前面也写了很长一段，能憋出来的都写在里面了。开这一篇文章其实是因为前面 准备这篇译文的时候，把整个讨论串的消息都读了一遍，感觉其中有不少精彩的观点和论述， 摘录出来放到这里。</p>
+
+<p>翻译太难，这里就直接放原文，不翻译了。斜体和粗体均为编者所加。和之前一样， 每段后面附上原文链接。后面的中文部分是我的一些想法。</p>
+  <div class="read-mode"><a href="/posts/2022/01/afterword/">Read more &rarr;</a></div>
+</section>
+<section>
+  <h1 class="title"><a href='/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/'>译："A closure is poor man&rsquo;s object, an object is poor man&rsquo;s closure."</a></h1>
+  <div class="meta">
+    <span class="meta date">
+<time datetime="2022-01-08" pubdate="true">2022-01-08</time></span> :: <span class="tag"><span class="tags"><a href="/tags/programming.html">programming</a>, <a href="/tags/programming-paradigm.html">programming paradigm</a></span></span>
+  </div>
+
+<p>编程范式的讨论，应该算是程序员社区的日常话题。函数式编程和面向对象，分别是什么， 孰优孰劣，总是争论不休，如同无休无止的宗教战争。而 closure 和 object，可以称作是 fp 和 oop 各自的代表概念。</p>
+
+<p>要翻译的这篇文章，写于 2003 年，是一条邮件列表里的消息。它出自一个 <a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/threads.html#03215">很长的讨论串</a>， 始作俑者<sup><a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-1-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-1-return">1</a></sup>标题 &ldquo;What&rsquo;s so cool about Scheme?&rdquo;，似乎不容易联系到这里。 最后一段留下了一个问题：</p>
+
+<blockquote>
+ <p>Is Scheme really a &lsquo;functional programming language&rsquo; or is it just a really general purpose tool that allows functional programming?</p></blockquote>
+
+<p>Scheme 真的是一门“函数式编程”语言吗？然后就引发了长长的讨论，讨论什么是函数式编程， 函数式编程必要的特性有哪些，什么是 Scheme / Lisp 的特质。当然，不可避免地， 会提到其他编程范式，当然，主要是面向对象。</p>
+
+<p>然后就到了这篇文章，<a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03277.html">http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03277.html</a>。 它先从倾向闭包的角度，后从倾向对象的角度，来阐发一者无非是低劣版本的另一者。 但是当两种针锋相对的态度出现在同一篇文章中，仿佛太极阴阳，两相融合。因为这种 平等宽容的态度，我很喜欢这个文章。另一个我喜欢的点是在于文章最后编的禅宗公案， 有棒喝，有机锋；给原本朴实的技术讨论增加了不少禅意。</p>
+
+<p>&ldquo;A closure is poor man&rsquo;s object, an object is poor man&rsquo;s closure.&rdquo; 从文章中提取 出来的这个句子，成为了编程语言社区里的一条名言或是警句；也被用作这篇文章的标题。</p>
+  <div class="read-mode"><a href="/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/">Read more &rarr;</a></div>
+</section>
+<section>
+  <h1 class="title"><a href='/posts/2020/03/define-memo/'>从 Fibonacci 到 define-memo</a></h1>
+  <div class="meta">
+    <span class="meta date">
+<time datetime="2020-03-07" pubdate="true">2020-03-07</time></span> :: <span class="tag"><span class="tags"><a href="/tags/memoize.html">memoize</a>, <a href="/tags/racket.html">racket</a>, <a href="/tags/macro.html">macro</a></span></span>
+  </div>
+
+<p>&#25925;&#20107;&#35201;&#20174; HackerRank &#32593;&#31449;&#19978;&#30340; "Functional Programming" &#39064;&#38598;&#37324;&#30340;
+<a href="https://www.hackerrank.com/challenges/fibonacci-fp/problem">&#19968;&#36947;&#39064;&#30446;</a>
+&#35828;&#36215;&#12290;&#36825;&#36947;&#39064;&#30446;&#21483; "Fibonacci"&#65292;&#23646;&#20110; "Memoize and DP" &#20998;&#31867;&#19979;&#12290;&#19968;&#22914;&#39064;&#30446;&#21517;&#23383;&#19968;&#26679;
+&#30452;&#30333;&#65292;&#36825;&#39064;&#23601;&#26159;&#35201;&#27714; Fibonacci &#25968;&#21015;&#30340;&#31532; n &#39033; \(Fib_n\)&#65292;&#20854;&#20013; \(Fib_0 = 0, Fib_1 =
+1\)&#12290;&#65288;&#20854;&#23454;&#36824;&#26159;&#26377;&#28857;&#28857;&#24046;&#21035;&#65292;&#21407;&#39064;&#22240;&#20026;&#25968;&#23383;&#31934;&#24230;&#33539;&#22260;&#30340;&#38382;&#39064;&#35201;&#27714; mod 10e8+7&#65292;&#20294;&#26159;&#22312;&#36825;&#37324;
+&#25105;&#20204;&#19981;&#38656;&#35201;&#32771;&#34385;&#36825;&#20010;&#38382;&#39064;&#65292;&#19979;&#38754;&#24573;&#30053; mod 10e8+7 &#36825;&#20010;&#25805;&#20316;&#12290;&#65289;</p>
+
+<p>&#37027;&#22826;&#31616;&#21333;&#20102;&#21834;&#65292;&#30452;&#25509;&#19978;&#26469;&#20889;&#65306;</p>
+  <div class="read-mode"><a href="/posts/2020/03/define-memo/">Read more &rarr;</a></div>
+</section>
+<section>
+  <h1 class="title"><a href='/posts/2019/12/how-i-made-this-blog/'>Hello World, Again：我是怎么折腾出这个博客的</a></h1>
+  <div class="meta">
+    <span class="meta date">
+<time datetime="2019-12-22" pubdate="true">2019-12-22</time></span> :: <span class="tag"><span class="tags"><a href="/tags/meta.html">meta</a></span></span>
+  </div>
+
+<p>其实这篇文章完全不在我的计划中，本地还有两篇没写完的文章；但是折腾这个博客的过程 实在是太费精力了，让这个博客能在因特网上出现之后，我决定写这样一篇文章。（主要是 怕不记下来会把这里发生的事情忘了。）</p>
+
+<p>如果你看（当前的）博客首页的话，会发现上下两篇都是「Hello World」。这种尴尬情况 的出现是因为这个博客的一部分是在很久以前就准备好的了。当时准备了那一篇<a href="/posts/2019/05/hello-world.html">「Hello World」</a>，留作第一篇博客，同时也方便写样式测试 效果。但是后来把这个博客折腾上线的过程中还是花了不少力气，所以再多记录一点。</p>
+  <div class="read-mode"><a href="/posts/2019/12/how-i-made-this-blog/">Read more &rarr;</a></div>
+</section>
+<section>
+  <h1 class="title"><a href='/posts/2019/05/hello-world/'>Hello World</a></h1>
+  <div class="meta">
+    <span class="meta date">
+<time datetime="2019-05-21" pubdate="true">2019-05-21</time></span> :: <span class="tag"><span class="tags"><a href="/tags/meta.html">meta</a></span></span>
+  </div>
+
+<p>终于开始写博客了。</p>
+  <div class="read-mode"><a href="/posts/2019/05/hello-world/">Read more &rarr;</a></div>
+</section>
+    </main>
+    <footer>
+      <p>&copy; 2019 - 2022, yfzhe.</p>
+      <p>Posts released under <a href="https://creativecommons.org/licenses/by-sa/4.0/"><strong>CC BY-SA 4.0</strong></a> license.</p>
+      <p>Site generated by <a href="https://github.com/greghendershott/frog">Frog</a>,
+    the <strong>fr</strong>ozen bl<strong>og</strong> tool, built on
+        <a href="https://racket-lang.org">Racket</a>.
+      </p>
+    </footer>
+  </body>
+</html>

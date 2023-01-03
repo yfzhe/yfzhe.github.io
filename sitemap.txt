@@ -1,0 +1,6 @@
+https://yfzhe.github.io/posts/2019/12/how-i-made-this-blog/
+https://yfzhe.github.io/posts/2022/01/a-closure-is-poor-man-s-object-and-vice-versa/
+https://yfzhe.github.io/posts/2019/05/hello-world/
+https://yfzhe.github.io/posts/2022/01/afterword/
+https://yfzhe.github.io/posts/2020/03/define-memo/
+https://yfzhe.github.io/about.html
