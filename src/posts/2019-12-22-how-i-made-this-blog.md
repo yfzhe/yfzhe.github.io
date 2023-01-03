@@ -142,4 +142,4 @@ software 做一点微小的贡献。毕竟有这么一句话：
 
 [^4]: 关于这个我去 frog 的 github 上提了 [issue](https://github.com/greghendershott/frog/issues/253)，后来 Greg Hendershott 也做了一些修复。<br />当年做了非常多 Racket 相关的东西的 Greg，居然因为 Racket2，放下了更新的步伐——甚至前段时间还把有些 repo 存档了（虽然后来又都取消存档），真是让人挺难受的。
 
-[^5]: 我的配置文件在 <https://github.com/yfzhe/yfzhe.github.io/blob/source/.circleci/config.yml>，如果也有处于非正常情况下的人需要参考的话。正常情况，还是前面的两篇博客（中的任何一篇）就够了。
+[^5]: 我的配置文件在 <https://github.com/yfzhe/yfzhe.github.io/blob/a6c76fccdd6840930bf9fda3ed9f21e6b438f61a/.circleci/config.yml>，如果也有处于非正常情况下的人需要参考的话。正常情况，还是前面的两篇博客（中的任何一篇）就够了。
