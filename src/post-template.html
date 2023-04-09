@@ -1,19 +1,11 @@
-<article>
-  <h1 class="title"><a href="@|uri-path|">@|title|</a></h1>
-  <div class="meta">
+<article class="post">
+  <h1 class="post-title"><a href="@|uri-path|">@|title|</a></h1>
+  <div class="post-meta">
     <span class="meta-date">@|date|</span> :: <span class="meta-tags">@|tags|</span>
   </div>
   @|content|
 </article>
-@;disqus-comments["shortname"]
 <div class="prev-and-next">
-  @(when older-uri
-    @list{
-      <div class="prev">
-        &larr;
-        <a href="@|older-uri|">@|older-title|</a>
-      </div>
-     })
   @(when newer-uri
     @list{
       <div class="next">
@@ -21,4 +13,11 @@
         <a href="@|newer-uri|">@|newer-title|</a>
       </div>
     })
+  @(when older-uri
+    @list{
+      <div class="prev">
+        &larr;
+        <a href="@|older-uri|">@|older-title|</a>
+      </div>
+     })
 </div>
