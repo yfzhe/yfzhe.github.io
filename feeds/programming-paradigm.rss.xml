@@ -40,41 +40,41 @@
 
 &lt;h2 id="anton-van-straaten-于-20030603-202357-0400"&gt;Anton van Straaten 于 2003&amp;ndash;06&amp;ndash;03 20:23:57 &amp;ndash;0400：&lt;/h2&gt;
 
-&lt;p&gt;我可以部分同意你的观点；但真的，如果没有闭包，人们会用——也正在用—— 种种不优雅的怪异的方法&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-2-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-2-return"&gt;2&lt;/a&gt;&lt;/sup&gt;——就比如，对象 ;o)&lt;/p&gt;
+&lt;p&gt;我部分同意你的观点；但真的，如果没有闭包，人们就会用——也确实在用—— 种种不优雅的怪异的方法&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-2-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-2-return"&gt;2&lt;/a&gt;&lt;/sup&gt;——就比如，对象 ;o)&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03257.html"&gt;http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03257.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id="mike-newhall-于-20030603-203614-0400"&gt;Mike Newhall 于 2003&amp;ndash;06&amp;ndash;03 20:36:14 &amp;ndash;0400：&lt;/h2&gt;
 
-&lt;p&gt;另外，虽然我不记得原话，Christian Queinnec 在 &lt;em&gt;LISP In Small Pieces&lt;/em&gt; 里提出， 尽管很多人认为对象是“可怜人的闭包”，但（在他看来）闭包实际是可怜人的对象。&lt;/p&gt;
+&lt;p&gt;另外，虽然我不记得原话，Christian Queinnec 在 &lt;em&gt;LISP In Small Pieces&lt;/em&gt; 里指出， 尽管很多人认为对象是「可怜人的闭包」，但（在他看来）闭包实际就是可怜人的对象。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03258.html"&gt;http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03258.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id="guy-steele-于-20030604-105409-0400"&gt;Guy Steele 于 2003&amp;ndash;06&amp;ndash;04 10:54:09 &amp;ndash;0400：&lt;/h2&gt;
 
-&lt;p&gt;闭包是一个对象，它有且仅有一个方法 (method)：“调用 (apply)”。&lt;/p&gt;
+&lt;p&gt;闭包是一个对象，它有且仅有一个方法 (method)：「应用 (apply)」。&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03269.html"&gt;http://people.csail.mit.edu/gregs/ll1-discuss-archive-html/msg03269.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id="anton-van-straaten-于-20030604-131321-0400"&gt;Anton van Straaten 于 2003&amp;ndash;06&amp;ndash;04 13:13:21 &amp;ndash;0400：&lt;/h2&gt;
 
-&lt;p&gt;从一个角度来看，这是对的；也是我对于对象被用来解决缺少闭包的问题的看法。 闭包的简洁可以成为一种财富：类和接口会阻碍行为的简单参数化 (simple parameterization of behavior)。任何在 Java 或 C++ 里尝试函数式编程的人 都会碰到这一点——能够做到，但是它太冗长乏味了。如果你想做的不过是像  &lt;code&gt;(map somefun mylist)&lt;/code&gt; 这样的事情，那能够去定义可执行的“对象”（闭包）， 在必要的时候将它们内联 (inline)，这会非常有用。&lt;/p&gt;
+&lt;p&gt;从一个角度来看，这是对的；我也是这么看待对象被用来解决缺少闭包的问题的。 闭包的简洁可以成为一种财富：类和接口会阻碍行为的简单参数化 (simple parameterization of behavior)。任何在 Java 或 C++ 里尝试函数式编程的人 都会碰到这一点——能够实现，但是太冗长乏味。如果你想做的不过是像  &lt;code&gt;(map somefun mylist)&lt;/code&gt; 这样的事情，那么能够简洁地定义可执行的「对象」（闭包）， 有必要的时候甚至可以将它们内联 (inline)，这会非常有用。&lt;/p&gt;
 
-&lt;p&gt;但从另一个角度看，闭包的这个调用“方法”可以用作底层 (low-level) 的方法分派 (method dispatch) 机制，所以闭包可以被用来，且已经被用来实现高效的、具有多个 方法的对象系统。Oleg Kiselyov 有一篇关于这个主题的短文： &lt;a href="http://okmij.org/ftp/Scheme/oop-in-fp.txt"&gt;http://okmij.org/ftp/Scheme/oop-in-fp.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但从另一个角度看，闭包的这个应用「方法」可以用作底层 (low-level) 的方法分派 (method dispatch) 机制，所以闭包可以被用来，且正在被用来实现有效的、具有多个 方法的对象系统。Oleg Kiselyov 有一篇关于这个主题的短文： &lt;a href="http://okmij.org/ftp/Scheme/oop-in-fp.txt"&gt;http://okmij.org/ftp/Scheme/oop-in-fp.txt&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;在被这样使用后，闭包可以说是比对象更强大，因为它可以实现很多新的功能，而不仅仅 作为一个单一的语言所提供的方法分派机制。将闭包视为用以实现对象的构成单元，那么 显而易见，对象是可怜人的闭包。&lt;/p&gt;
+&lt;p&gt;以这种方式使用闭包，可以说闭包比对象强大，因为它可以支持更多的功能，而不是仅仅 作为语言提供的一个方法分派机制。将闭包视作用以实现对象的构造单元，那么显而易见， 对象是可怜人的闭包。&lt;/p&gt;
 
-&lt;p&gt;但是 Smalltalk&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-3-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-3-return"&gt;3&lt;/a&gt;&lt;/sup&gt; 用户可能会说，等等，如果你要费尽心思去在你的语言里实现闭包这样的 东西，既然这闭包已经和对象非常相似了，为什么不一路走下去，实现“真正”的，支持任意 数量的方法的，对象呢？那这时闭包不过是一种特殊情况下的对象。如果你的语言里只有 这些受限的闭包，而你却又不得不在此之上实现一个对象系统，那显然闭包是可怜人的对象。&lt;/p&gt;
+&lt;p&gt;但是，Smalltalk&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-3-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-3-return"&gt;3&lt;/a&gt;&lt;/sup&gt; 用户可能会说，等等，如果你要费尽心思在你的语言里实现闭包 这样的东西，既然这闭包已经很像对象了，为什么不一路走下去，去实现「真正」的、支持 任意数量个方法的对象呢？这时闭包不过是对象的一种特例。如果你的语言里只有这些受限 的闭包，而你却又不得不在此之上实现一个对象系统，那么显而易见，闭包是可怜人的对象。&lt;/p&gt;
 
-&lt;p&gt;这两种对立观点间的冲突我无意解决，我认为这个关于闭包和对象的问题应该成为一个公案。 我会去拿到禅法认证&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-4-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-4-return"&gt;4&lt;/a&gt;&lt;/sup&gt;，并将 Norman Adams（被认为是“对象是可怜人的闭包”的提出者） 和 Christian Queinnec（“闭包是可怜人的对象”）结合成一个大禅师，称为 Qc Na。 我还会不太谦虚地把自己以一个学生的身份放到这则故事里，正如我在这条消息的最后一段 里提过的： &lt;a href="http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html"&gt;http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html&lt;/a&gt;&amp;hellip;&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-5-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-5-return"&gt;5&lt;/a&gt;&lt;/sup&gt; 我认为我确实是在思考这两种看似对立的角度中获得了一些启迪。下面是这则公案：&lt;/p&gt;
+&lt;p&gt;考虑到这两种观点的对立，我认为闭包还是对象的问题应该成为一个公案。我会去拿到禅法 认证&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-4-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-4-return"&gt;4&lt;/a&gt;&lt;/sup&gt;，将 Norman Adams（「对象是可怜人的闭包」据说是他提出的）和 Christian Queinnec（「闭包是可怜人的对象」）结合成一个名为 Qc Na 的大禅师。我还会不谦虚 地把自己以一个学生的形象放到这则故事里，正如我在这条消息的最后一段里提过的： &lt;a href="http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html"&gt;http://www.ai.mit.edu/~gregs/ll1-discuss-archive-html/msg01488.html&lt;/a&gt;&amp;hellip;&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-5-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-5-return"&gt;5&lt;/a&gt;&lt;/sup&gt; 我确信我从思考这两种看似对立的角度中获得了一些启迪。下面是这则公案：&lt;/p&gt;
 
 &lt;div class="text-center"&gt;* * *&lt;/div&gt;
 
-&lt;p&gt;德高望重的 Qc Na 大师正和弟子 Anton 散步。想和师父讨论问题，Anton 打开了话茬， “师父，我听说对象是个很好的东西，这是真的吗？”Qc Na 大师眼含怜悯看着学生，回答， “傻孩子，对象不过是可怜人的闭包罢了。”&lt;/p&gt;
+&lt;p&gt;德高望重的 Qc Na 法师正和弟子 Anton 散步。想和师父讨论问题，Anton 打开了话茬， 「师父，我听说对象是个很好的东西，这是真的吗？」Qc Na 法师眼含怜悯看着学生，回答道： 「傻孩子，对象不过是可怜人的闭包罢了。」&lt;/p&gt;
 
-&lt;p&gt;收到训斥，Anton 从师父身边离开回到自己的小屋，决心研究闭包。他仔细阅读整个 “Lambda: The Ultimate&amp;hellip;”&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-6-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-6-return"&gt;6&lt;/a&gt;&lt;/sup&gt; 系列的论文和其他相关的论文；又实现了一个小的 Scheme 解释器，其中包含一个基于闭包的对象系统。他收获颇丰，期待向师父展示自己的进展。&lt;/p&gt;
+&lt;p&gt;收到训斥，Anton 离开师父回到自己的小房间，决心研究闭包。他仔细阅读 “Lambda: The Ultimate&amp;hellip;”&lt;sup&gt;&lt;a href="#2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-6-definition" name="2022-01-08-a-closure-is-poor-man-s-object-and-vice-versa-footnote-6-return"&gt;6&lt;/a&gt;&lt;/sup&gt; 系列的全部论文还有其他相关的论文；又用一个基于闭包的对象系统 实现了一个小的 Scheme 解释器。他收获颇丰，期待向师父汇报自己的进展。&lt;/p&gt;
 
-&lt;p&gt;再一次和 Qc Na 大师散步时，Anton 试图让老师惊讶：“师父，我已经仔细学习了这个 问题，现在我理解什么叫对象不过是可怜人的闭包了。”听罢，Qc Na 大师对 Anton 当头一棒，“你何时才能学会？闭包是可怜人的对象。”当是时，Anton 开悟。&lt;/p&gt;
+&lt;p&gt;再一次和 Qc Na 法师散步时，Anton 试图让老师惊讶：「师父，我已经认真学习了这个问题， 现在我明白了，对象确实是可怜人的闭包。」听罢，Qc Na 大师对 Anton 当头一棒，「你何 时才能学会？闭包是可怜人的对象。」当是时，Anton 开悟。&lt;/p&gt;
 
 &lt;p&gt;:)&lt;/p&gt;
 
