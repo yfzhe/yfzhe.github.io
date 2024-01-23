@@ -5,19 +5,3 @@
   </div>
   @|content|
 </article>
-<div class="prev-and-next">
-  @(when newer-uri
-    @list{
-      <div class="next">
-        &rarr;
-        <a href="@|newer-uri|">@|newer-title|</a>
-      </div>
-    })
-  @(when older-uri
-    @list{
-      <div class="prev">
-        &larr;
-        <a href="@|older-uri|">@|older-title|</a>
-      </div>
-     })
-</div>
